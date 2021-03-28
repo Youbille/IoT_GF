@@ -50,34 +50,34 @@ esp_err_t gpio_set_interrupt(gpio_num_t gpio,
     return ESP_OK;
 }
 
-void gpio_enable (gpio_num_t gpio, const gpio_mode_t mode)
-{
-    gpio_config_t gpio_cfg = {
-       .pin_bit_mask = ((uint64_t)(((uint64_t)1)<< gpio)),
-       .mode = mode,
-       .pull_up_en = auto_pull_up,
-       .pull_down_en = auto_pull_down,
-    };
-    gpio_config(&gpio_cfg);
-}
+//void gpio_enable (gpio_num_t gpio, const gpio_mode_t mode)
+//{
+//    gpio_config_t gpio_cfg = {
+//       .pin_bit_mask = ((uint64_t)(((uint64_t)1)<< gpio)),
+//       .mode = mode,
+//       .pull_up_en = auto_pull_up,
+//       .pull_down_en = auto_pull_down,
+//    };
+//    gpio_config(&gpio_cfg);
+//}
 
 // esp-open-rtos I2C interface wrapper
 
 #define I2C_ACK_VAL  0x0
 #define I2C_NACK_VAL 0x1
 
-void i2c_init (int bus, gpio_num_t scl, gpio_num_t sda, uint32_t freq)
-{
-    i2c_config_t conf;
-    conf.mode = I2C_MODE_MASTER;
-    conf.sda_io_num = sda;
-    conf.scl_io_num = scl;
-    conf.sda_pullup_en = GPIO_PULLUP_ENABLE;
-    conf.scl_pullup_en = GPIO_PULLUP_ENABLE;
-    conf.master.clk_speed = freq;
-    i2c_param_config(bus, &conf);
-    i2c_driver_install(bus, I2C_MODE_MASTER, 0, 0, 0);
-}
+//void i2c_init (int bus, gpio_num_t scl, gpio_num_t sda, uint32_t freq)
+//{
+//    i2c_config_t conf;
+  //  conf.mode = I2C_MODE_MASTER;
+    //conf.sda_io_num = sda;
+ //   conf.scl_io_num = scl;
+  //  conf.sda_pullup_en = GPIO_PULLUP_ENABLE;
+   // conf.scl_pullup_en = GPIO_PULLUP_ENABLE;
+  //  conf.master.clk_speed = freq;
+ //   i2c_param_config(bus, &conf);
+ //   i2c_driver_install(bus, I2C_MODE_MASTER, 0, 0, 0);
+//}
 
 int i2c_slave_write (uint8_t bus, uint8_t addr, const uint8_t *reg, 
                      uint8_t *data, uint32_t len)
