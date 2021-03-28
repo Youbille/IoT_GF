@@ -47,6 +47,7 @@ void bme_init(){
    sensor = bme680_init_sensor (SPI_BUS, 0, SPI_CS_GPIO);
    if (sensor)
     {
+      //Here we can tinker with the different configurations for each measurement
     }
     else
         printf("Could not initialize BME680 sensor\n");
