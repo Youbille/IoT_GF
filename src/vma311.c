@@ -17,7 +17,7 @@ void vma311_init(gpio_num_t num)
     vma311.num = num;
     vma311.last_read_time = -2000000;
     esp_err_t gpio_reset_pin(gpio_num_t num); // Reset the GPIO pins
-    vTaskDelay(pdMS_TO_TICKS(1000));// Delay 1 second until the sensor becomes stable
+    vTaskDelay(pdMS_TO_TICKS(1000));
 }
 
 //Send start signal to VMA311.
@@ -34,8 +34,7 @@ vma311_data_t vma311_get_values()
 {
     vma311_data_t error_data = {VMA311_TIMEOUT_ERROR, -1, -1, -1, -1};
     uint8_t data[5] = {0, 0, 0, 0, 0}; //initialize an array to store the values of each of the 5 bytes sent by the sensor:
-    //la partie entière de l'humidité relative, la partie décimale, la partie entière de la température et enfin sa partie décimale.
-    //plus une somme de contrôle
+    
 
     if (esp_timer_get_time() - 2000000 < vma311.last_read_time) //if the duration since the last reading of the sensor is under 2000000 ticks, the program returns the previous measures that the sensor has done
     {
