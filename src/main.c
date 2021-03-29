@@ -78,10 +78,10 @@ void app_main(void)
     char value[11];
     
     sprintf(value,"%f",values.temperature);
-    aio_create_data(value, "alex");
+    aio_create_data(value, "Temp");
     mqtt_publish("gf171016/bme680/temp",value);
     sprintf(value,"%f",values.humidity);
-    aio_create_data(value, "alexhumidity");
+    aio_create_data(value, "Humidity");
     mqtt_publish("gf171016/bme680/humidity",value);
     sprintf(value,"%f",values.pressure);
     mqtt_publish("gf171016/bme680/pressure",value);
